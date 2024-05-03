@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import 'package:totalx/controller/vrification_controller.dart';
@@ -12,6 +13,7 @@ class OtpVerificationPage extends StatelessWidget {
 
   OtpVerificationPage({
     required this.last2dig,
+    required phonenumber,
   });
 
   @override
@@ -92,27 +94,47 @@ class OtpVerificationWidget extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  RichText(
-                    text: const TextSpan(children: <TextSpan>[
-                      TextSpan(
-                        text: "Don't Get OPT?",
-                        style: TextStyle(
-                          color: Colors.black,
-                          letterSpacing: 1,
-                          fontSize: 15,
+                  GestureDetector(
+                    onTap: () async {
+                      if (otpProvider.otps!.isNotEmpty &&
+                          otpProvider.otps!.allMatches(otpProvider.otps!) ==
+                              true) {
+                        await Provider.of<OtpVerificationProvider>(context,
+                                listen: false)
+                            .otps;
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => HomePage(),
+                        ));
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Incorrect OTP. Please try again.'),
+                          ),
+                        );
+                      }
+                    },
+                    child: RichText(
+                      text: const TextSpan(children: <TextSpan>[
+                        TextSpan(
+                          text: "Don't Get OPT?",
+                          style: TextStyle(
+                            color: Colors.black,
+                            letterSpacing: 1,
+                            fontSize: 15,
+                          ),
                         ),
-                      ),
-                      TextSpan(
-                        text: 'Resend',
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: Color.fromARGB(255, 6, 131, 233),
-                          fontWeight: FontWeight.w600,
-                          fontSize: 15,
-                          letterSpacing: 1,
-                        ),
-                      )
-                    ]),
+                        TextSpan(
+                          text: 'Resend',
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Color.fromARGB(255, 6, 131, 233),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                            letterSpacing: 1,
+                          ),
+                        )
+                      ]),
+                    ),
                   ),
                 ],
               ),

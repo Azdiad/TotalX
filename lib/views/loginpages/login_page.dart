@@ -13,7 +13,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController phoneNumbercontroller = TextEditingController();
-  Future<void> _verifyPhoneNum(BuildContext context) async {
+  Future<void> verifyPhoneNum(BuildContext context) async {
     String phoneNumber = phoneNumbercontroller.text.trim();
 
     if (!phoneNumber.startsWith("+91")) {
@@ -120,17 +120,21 @@ class _LoginPageState extends State<LoginPage> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
                 onPressed: () async {
-                  await _verifyPhoneNum(context);
+                  if (phoneNumbercontroller.text.isNotEmpty) {
+                    await verifyPhoneNum(context);
 
-                  String lastTwoDigits = phoneNumbercontroller.text.length >= 2
-                      ? phoneNumbercontroller.text
-                          .substring(phoneNumbercontroller.text.length - 2)
-                      : phoneNumbercontroller.text;
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => OtpVerificationPage(
-                      last2dig: lastTwoDigits,
-                    ),
-                  ));
+                    String lastTwoDigits = phoneNumbercontroller.text.length >=
+                            2
+                        ? phoneNumbercontroller.text
+                            .substring(phoneNumbercontroller.text.length - 2)
+                        : phoneNumbercontroller.text;
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => OtpVerificationPage(
+                        last2dig: lastTwoDigits,
+                        phonenumber: phoneNumbercontroller.text,
+                      ),
+                    ));
+                  }
                 },
                 child: const Text(
                   'Get OTP',
