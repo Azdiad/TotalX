@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,9 @@ import 'package:totalx/controller/vrification_controller.dart';
 class OtpVerificationPage extends StatelessWidget {
   final String last2dig;
 
-  OtpVerificationPage({required this.last2dig});
+  OtpVerificationPage({
+    required this.last2dig,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,18 +45,18 @@ class OtpVerificationWidget extends StatelessWidget {
                   child: Image.asset('assets/images/image2.png'),
                 ),
               ),
-              SizedBox(height: 30),
-              Align(
+              const SizedBox(height: 30),
+              const Align(
                 alignment: Alignment.topLeft,
                 child: Text(
                   'OTP Verification',
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                   'Enter the verification code we just sent to your number +91 ********$last2dig'),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Pinput(
                 length: 6,
                 showCursor: true,
@@ -76,20 +79,20 @@ class OtpVerificationWidget extends StatelessWidget {
                   otpProvider.setOtp(value);
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     '${otpProvider.counter} Sec',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.red,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   RichText(
-                    text: TextSpan(children: <TextSpan>[
+                    text: const TextSpan(children: <TextSpan>[
                       TextSpan(
                         text: "Don't Get OPT?",
                         style: TextStyle(
@@ -102,7 +105,7 @@ class OtpVerificationWidget extends StatelessWidget {
                         text: 'Resend',
                         style: TextStyle(
                           decoration: TextDecoration.underline,
-                          color: const Color.fromARGB(255, 6, 131, 233),
+                          color: Color.fromARGB(255, 6, 131, 233),
                           fontWeight: FontWeight.w600,
                           fontSize: 15,
                           letterSpacing: 1,
@@ -112,19 +115,25 @@ class OtpVerificationWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: ElevatedButton(
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                  onPressed: () {
-                    // Perform verification here
+                child: Consumer<OtpVerificationProvider>(
+                  builder: (context, otpprovider, child) {
+                    return ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black),
+                      onPressed: () async {
+                        Provider.of<OtpVerificationProvider>(context,
+                                listen: false)
+                            .otps;
+                      },
+                      child: const Text(
+                        'Verify',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    );
                   },
-                  child: Text(
-                    'Verify',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  ),
                 ),
               )
             ],

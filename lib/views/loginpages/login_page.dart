@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -90,8 +91,6 @@ class _LoginPageState extends State<LoginPage> {
                         letterSpacing: 1),
                   )
                 ]),
-
-                // style: TextStyle(color: Colors.black, fontSize: 20),
               ),
             ),
             const SizedBox(
@@ -101,8 +100,15 @@ class _LoginPageState extends State<LoginPage> {
               width: MediaQuery.of(context).size.width,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                onPressed: () {
-                  setState(() {});
+                onPressed: () async {
+                  await FirebaseAuth.instance.verifyPhoneNumber(
+                      verificationCompleted:
+                          (PhoneAuthCredential credential) {},
+                      verificationFailed: (FirebaseAuthException exception) {},
+                      codeSent: (String verificationid, int? redendtoken) {},
+                      codeAutoRetrievalTimeout: (String verfificationid) {},
+                      phoneNumber: phoneNumbercontroller.text.toString());
+
                   String lastTwoDigits = phoneNumbercontroller.text.length >= 2
                       ? phoneNumbercontroller.text
                           .substring(phoneNumbercontroller.text.length - 2)
