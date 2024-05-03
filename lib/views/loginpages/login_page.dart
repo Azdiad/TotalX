@@ -13,10 +13,29 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController phoneNumbercontroller = TextEditingController();
+  Future<void> _verifyPhoneNum(BuildContext context) async {
+    String phoneNumber = phoneNumbercontroller.text.trim();
+
+    if (!phoneNumber.startsWith("+91")) {
+      phoneNumber = "+91" + phoneNumber;
+    }
+
+    FirebaseAuth auth = FirebaseAuth.instance;
+    await auth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        verificationCompleted: (PhoneAuthCredential credential) async {},
+        verificationFailed: (FirebaseAuthException e) {
+          print(e.message.toString());
+        },
+        codeSent: (String verificationId, forceResendingToken) {},
+        codeAutoRetrievalTimeout: (String verificationId) {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -101,13 +120,7 @@ class _LoginPageState extends State<LoginPage> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
                 onPressed: () async {
-                  await FirebaseAuth.instance.verifyPhoneNumber(
-                      verificationCompleted:
-                          (PhoneAuthCredential credential) {},
-                      verificationFailed: (FirebaseAuthException exception) {},
-                      codeSent: (String verificationid, int? redendtoken) {},
-                      codeAutoRetrievalTimeout: (String verfificationid) {},
-                      phoneNumber: phoneNumbercontroller.text.toString());
+                  await _verifyPhoneNum(context);
 
                   String lastTwoDigits = phoneNumbercontroller.text.length >= 2
                       ? phoneNumbercontroller.text

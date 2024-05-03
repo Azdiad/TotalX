@@ -41,48 +41,47 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAOqa-id3cpVBSyAQFTLseAWCsZUQkmYGM',
-    appId: '1:76830169839:web:54d9aed46476145097d91a',
-    messagingSenderId: '76830169839',
-    projectId: 'totalx-b180f',
-    authDomain: 'totalx-b180f.firebaseapp.com',
-    storageBucket: 'totalx-b180f.appspot.com',
-    measurementId: 'G-DCDYET4H19',
+    apiKey: 'AIzaSyD4ptv3aLu-G3iGPHvlxYQuadIJEs3RRgg',
+    appId: '1:487700009264:web:48419fbde26121e79df8f5',
+    messagingSenderId: '487700009264',
+    projectId: 'totalxs-302f9',
+    authDomain: 'totalxs-302f9.firebaseapp.com',
+    storageBucket: 'totalxs-302f9.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAn4ZajBozx5r6Dd1hCYoTZUO9xjxcSQTU',
-    appId: '1:76830169839:android:efc2cddf791cf6bb97d91a',
-    messagingSenderId: '76830169839',
-    projectId: 'totalx-b180f',
-    storageBucket: 'totalx-b180f.appspot.com',
+    apiKey: 'AIzaSyAUOP63MMIwUhR3hT7n_HNuEeNupTHSaDA',
+    appId: '1:487700009264:android:7d90882046dfc3429df8f5',
+    messagingSenderId: '487700009264',
+    projectId: 'totalxs-302f9',
+    storageBucket: 'totalxs-302f9.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyANB6o3aYL4QC9XHClh1NWvKXMhcfsRxkc',
-    appId: '1:76830169839:ios:bf0c3ecbb6adbd8097d91a',
-    messagingSenderId: '76830169839',
-    projectId: 'totalx-b180f',
-    storageBucket: 'totalx-b180f.appspot.com',
+    apiKey: 'AIzaSyAaIvclfYlqVX0Se9thRlciahhgljhNAl8',
+    appId: '1:487700009264:ios:6a50342d4828c8079df8f5',
+    messagingSenderId: '487700009264',
+    projectId: 'totalxs-302f9',
+    storageBucket: 'totalxs-302f9.appspot.com',
     iosBundleId: 'com.example.totalx',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyANB6o3aYL4QC9XHClh1NWvKXMhcfsRxkc',
-    appId: '1:76830169839:ios:bf0c3ecbb6adbd8097d91a',
-    messagingSenderId: '76830169839',
-    projectId: 'totalx-b180f',
-    storageBucket: 'totalx-b180f.appspot.com',
+    apiKey: 'AIzaSyAaIvclfYlqVX0Se9thRlciahhgljhNAl8',
+    appId: '1:487700009264:ios:6a50342d4828c8079df8f5',
+    messagingSenderId: '487700009264',
+    projectId: 'totalxs-302f9',
+    storageBucket: 'totalxs-302f9.appspot.com',
     iosBundleId: 'com.example.totalx',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAOqa-id3cpVBSyAQFTLseAWCsZUQkmYGM',
-    appId: '1:76830169839:web:390dc2308871da2797d91a',
-    messagingSenderId: '76830169839',
-    projectId: 'totalx-b180f',
-    authDomain: 'totalx-b180f.firebaseapp.com',
-    storageBucket: 'totalx-b180f.appspot.com',
-    measurementId: 'G-C939F0NCGN',
+    apiKey: 'AIzaSyD4ptv3aLu-G3iGPHvlxYQuadIJEs3RRgg',
+    appId: '1:487700009264:web:a2774272c7d5b1679df8f5',
+    messagingSenderId: '487700009264',
+    projectId: 'totalxs-302f9',
+    authDomain: 'totalxs-302f9.firebaseapp.com',
+    storageBucket: 'totalxs-302f9.appspot.com',
   );
+
 }

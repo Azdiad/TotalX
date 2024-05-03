@@ -8,8 +8,6 @@ class OtpVerificationProvider with ChangeNotifier {
   late Timer _timer;
   int _counter = 59;
   String? _otps;
-  // String? verificationcode;
-  // String? otpcontroller;
 
   int get counter => _counter;
   String? get otps => _otps;

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import 'package:totalx/controller/vrification_controller.dart';
+import 'package:totalx/views/homepage/homepage.dart';
 
 class OtpVerificationPage extends StatelessWidget {
   final String last2dig;
@@ -124,9 +125,12 @@ class OtpVerificationWidget extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black),
                       onPressed: () async {
-                        Provider.of<OtpVerificationProvider>(context,
+                        await Provider.of<OtpVerificationProvider>(context,
                                 listen: false)
                             .otps;
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => HomePage(),
+                        ));
                       },
                       child: const Text(
                         'Verify',
