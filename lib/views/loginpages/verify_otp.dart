@@ -147,9 +147,17 @@ class OtpVerificationWidget extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black),
                       onPressed: () async {
-                        await Provider.of<OtpVerificationProvider>(context,
-                                listen: false)
-                            .otps;
+                        if (otpProvider.otps!.isNotEmpty &&
+                            otpProvider.otps!.allMatches(otpProvider.otps!) ==
+                                true) {
+                          await Provider.of<OtpVerificationProvider>(context,
+                                  listen: false)
+                              .otps;
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (context) => HomePage(),
+                          ));
+                        }
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => HomePage(),
                         ));
